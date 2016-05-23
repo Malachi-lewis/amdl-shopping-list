@@ -1,0 +1,70 @@
+<!doctype html>
+<html ng-app='amdlList'>
+  <head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <!-- Optimize mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AMDL Shopping List App</title>
+
+    <!-- SCROLLS -->
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+      html       { overflow-y:scroll; }
+      body       { padding-top:50px; }
+      #item-list { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="core.js"></script>
+  </head>
+
+  <!-- SET THE CONTROLLER AND GET ALL ITEMS -->
+  <body ng-controller="mainController">
+    <div class="container">
+
+      <!-- HEADER AND ITEM COUNT -->
+      <div class="jumbotron text-center">
+        <h1>I'm a shop-aholic <span class="label label-info">{{ items.length }}</span>
+      </div>
+
+      <!-- ITEM LIST -->
+      <div id="item-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+          <!-- LOOP OVER THE ITEMS IN $scope.items -->
+          <div class="checkbox" ng-repeat="item in items">
+            <label>
+              <input type="checkbox" ng-click="deleteItem(item._id)"> {{item.name}} - {{item.quantity}}
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FORM TO CREATE ITEMS -->
+      <div id="item-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+          <form>
+
+            <div class="form-group">
+              <!-- BIND THIS VALUE TO formData.name IN ANGULAR -->
+              <input type="text" class="form-control input-lg text-center" placeholder="Bananas... Always bananas." ng-model="formData.name">
+              <input type="text" class="form-control input-lg text-center" placeholder="1" ng-model="formData.quantity">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="createItem()">Add</button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

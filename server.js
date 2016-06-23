@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var methodOverride= require('method-override');
 
 // configuration
-mongoose.connect("mongodb://localhost:27017/shopping-app");
+mongoose.connect('mongodb://'+process.env.MONGO_PORT_27017_TCP_ADDR+':'+process.env.MONGO_PORT_27017_TCP_PORT+'/shopping-app');
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
